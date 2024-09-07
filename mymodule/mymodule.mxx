@@ -1,0 +1,38 @@
+module;
+#include <boost/graph/graph_traits.hpp>
+#include <boost/graph/adjacency_list.hpp>
+
+export module mymodule;
+
+import std;
+
+export import :version;
+
+export namespace mymodule
+{
+  // Print a greeting for the specified name into the specified
+  // stream. Throw std::invalid_argument if the name is empty.
+  //
+  __symexport void
+  say_hello (std::ostream&, const std::string& name);
+
+
+  struct __symexport MyGraph
+  {
+
+    enum { A, B, C, D, E, N };
+    static const int num_vertices = N;
+    static inline const char* name = "ABCDE";
+
+      using Graph = boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS>;
+
+      using Edge = std::pair<int, int>;
+      std::vector<Edge> edge_array =
+      { Edge(A,B), Edge(A,D), Edge(C,A), Edge(D,C),
+        Edge(C,E), Edge(B,D), Edge(D,E) };
+
+      Graph graph { num_vertices };
+
+      MyGraph();
+  };
+}

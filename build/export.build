@@ -1,0 +1,6 @@
+$out_root/
+{
+  include mymodule/
+}
+
+export $out_root/mymodule/$import.target
